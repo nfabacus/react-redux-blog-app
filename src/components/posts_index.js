@@ -1,5 +1,24 @@
-import React from 'react';
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+import { fetchPosts } from '../actions/index';
 
-export default ()=>{
-  return <div>List of blog posts.</div>
-};
+class PostsIndex extends Component {
+  componentWillMount() {
+    this.props.fetchPosts();
+  }
+
+  render(){
+    return (
+      <div>List of blog posts</div>
+    );
+  }
+}
+
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ fetchPosts }, dispatch);
+// }
+// Above is not required with refactoring as below.
+
+// export default connect(null, { fetchPosts: fetchPosts })(PostsIndex);
+export default connect(null, { fetchPosts })(PostsIndex);
